@@ -4,7 +4,7 @@ from .settings import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-SECRET_KEY = os.getenv('LOCAL_SECRET_KEY')
+SECRET_KEY = "this secret"
 
 # Don't use Whitenoise to avoid having to run collectstatic first.
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
@@ -15,10 +15,10 @@ ALLOWED_HOSTS = ['*']
 # Set these environment variables in the .env file for this project.  
 
 # Local to instance settings.
-DBHOST=os.environ['LOCAL_HOST']
-DBNAME=os.environ['LOCAL_DATABASE']
-DBUSER=os.environ['LOCAL_USERNAME']
-DBPASS=os.environ['LOCAL_PASSWORD']
+DBHOST="host.docker.internal"
+DBNAME="bot_pedido"
+DBUSER="postgres"
+DBPASS="postgres"
 
 # Configure database connection for remote PostgreSQL instance.
 if 'USE_REMOTE_POSTGRESQL' in os.environ:

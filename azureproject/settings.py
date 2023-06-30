@@ -12,6 +12,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # Application definition
 INSTALLED_APPS = [
     'restaurant_review.apps.RestaurantReviewConfig',
+    'bot_pedido',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -13,6 +13,9 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt .
 RUN python -m pip install -r requirements.txt
 
+# Disable this for prod deploy.
+RUN pip install debugpy
+
 WORKDIR /app
 COPY . /app
 
