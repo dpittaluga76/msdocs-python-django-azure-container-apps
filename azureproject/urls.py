@@ -18,5 +18,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('', include('restaurant_review.urls')),
+    path('', include('bot_pedido.urls')),
     path('admin/', admin.site.urls),
 ]
