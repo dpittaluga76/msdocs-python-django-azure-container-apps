@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import JSONField
+import requests
 
 def send_to_botpedido(phone_number, free_text):
     url = 'https://botpedido-app-service.azurewebsites.net/set-free-text'
