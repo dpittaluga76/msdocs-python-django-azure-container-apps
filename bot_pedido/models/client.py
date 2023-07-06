@@ -2,6 +2,15 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import JSONField
 
+def send_to_botpedido(phone_number, free_text):
+    url = 'https://botpedido-app-service.azurewebsites.net/set-free-text'
+    data = {
+        'person_phone_number': phone_number,
+        'free_text': free_text,
+        'api_key': "bosanova2023"
+    }
+    response = requests.post(url, data=data)
+
 
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -13,6 +22,16 @@ class Client(models.Model):
     requirement_description = models.TextField()
     intro = models.TextField(blank=True, null=True)
     free_text = models.TextField(blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        if self.pk is not None:
+            orig = Client.objects.get(pk=self.pk)
+            if orig.free_text != self.free_text: 
+                # free_text field has changed
+                send_to_botpedido(self.person_phone_number, self.free_text)
+        
+        super(Client, self).save(*args, **kwargs)
+
 
 class Product(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
