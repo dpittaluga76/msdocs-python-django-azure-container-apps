@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import JSONField
 import requests
+import json
 
 def send_to_botpedido(phone_number, free_text):
     url = 'https://botpedido-app-service.azurewebsites.net/set-free-text'
@@ -10,7 +11,10 @@ def send_to_botpedido(phone_number, free_text):
         'free_text': free_text,
         'api_key': "bosanova2023"
     }
-    response = requests.post(url, data=data)
+    headers = {'Content-type': 'application/json'}
+
+    response = requests.post(url, data=json.dumps(data), headers=headers)
+    return response
 
 
 class Client(models.Model):
