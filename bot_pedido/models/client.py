@@ -9,7 +9,7 @@ def send_to_botpedido(phone_number, free_text):
     data = {
         'person_phone_number': phone_number,
         'free_text': free_text,
-        'api_key': "bosanova2023"
+        'api_token': "bosanova2023"
     }
     headers = {'Content-type': 'application/json'}
 
